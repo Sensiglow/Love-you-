@@ -741,6 +741,16 @@ function openLetter(){
   openButton.innerText = "Opening... 💌";
   openButton.disabled = true;
 
+  // Auto-play music when the letter is opened
+  if(typeof music !== 'undefined' && !musicPlaying){
+    music.play().then(() => {
+      musicPlaying = true;
+      musicBtn.classList.add("playing");
+    }).catch(error => {
+      console.log("Auto-play prevented by browser:", error);
+    });
+  }
+
   setTimeout(()=>{
     showScreen("proposal");
   },1100);
@@ -830,9 +840,7 @@ function sayYes(){
 /* BUTTON EVENTS */
 
 document.getElementById("yes-btn")
-  .addEventListener("click",()=>{
-    showScreen("memories");
-  });
+  .addEventListener("click",sayYes);
 
 document.getElementById("no-btn")
   .addEventListener("click",handleNo);
