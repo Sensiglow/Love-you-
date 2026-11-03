@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -738,19 +737,6 @@ function openLetter(){
 
   if(envelope.classList.contains("open")) return;
 
-  // PLAY MUSIC WHEN OPEN MY LETTER IS CLICKED
-  music.play().then(()=>{
-
-    musicPlaying = true;
-    musicBtn.classList.add("playing");
-    musicBtn.innerText = "♫";
-
-  }).catch(error=>{
-
-    console.log("Music could not be played.",error);
-
-  });
-
   envelope.classList.add("open");
   openButton.innerText = "Opening... 💌";
   openButton.disabled = true;
@@ -844,7 +830,9 @@ function sayYes(){
 /* BUTTON EVENTS */
 
 document.getElementById("yes-btn")
-  .addEventListener("click",sayYes);
+  .addEventListener("click",()=>{
+    showScreen("memories");
+  });
 
 document.getElementById("no-btn")
   .addEventListener("click",handleNo);
